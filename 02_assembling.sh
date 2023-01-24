@@ -193,9 +193,7 @@ for asmname in $(cut -f 3 ${libfile} | sort -u); do
 		-1 $(IFS=, ; echo "${left[*]}") \
 		-2 $(IFS=, ; echo "${right[*]}") \
 		${UPARAM} -o ${asmdir_out} &> ${output}/${asmname}.log.txt
-	
-	assemblathon_stats.pl ${asmdir_out}/final.contigs.fa > ${asmdir_out}/assemblathon_stats.txt
-	
+		
 	rm -fr ${asmdir_out}/intermediate_contigs/
 
 	echo "LEFT singletons..: $(IFS=, ; echo "${singleton_left[*]}")"
@@ -218,8 +216,6 @@ for asmname in $(cut -f 3 ${libfile} | sort -u); do
 	SOAPdenovo-127mer map -s config -p ${THREADS} -g k41 &> ${abs_asmdir_out}/scaffolding/SOAPdenovo-127mer-map.log.txt
 	SOAPdenovo-127mer scaff -p 40 -g k41 -F &> ${abs_asmdir_out}/scaffolding/SOAPdenovo-127mer-scaff.log.txt
 	
-	assemblathon_stats.pl k41.scafSeq > ./assemblathon_stats.txt
-
 	cd ${cur_dir}
 
 	#echo "Performing BWA alignment reads X assembly ..."
